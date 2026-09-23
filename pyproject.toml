@@ -1,0 +1,19 @@
+[project]
+name = "qpass"
+version = "1.0.0"
+description = "Quantum Password Generator"
+readme = "README.md"
+authors = [
+    { name = "Bartosz Świst", email = "bswist@protonmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "qdk>=1.32.3",
+]
+
+[project.scripts]
+qpass = "qpass:main"
+
+[build-system]
+requires = ["uv_build>=0.12.9,<0.13.0"]
+build-backend = "uv_build"
