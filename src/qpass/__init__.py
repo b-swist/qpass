@@ -1,0 +1,1 @@
+from .qpass import main
