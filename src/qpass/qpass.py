@@ -16,20 +16,18 @@ def bool_to_str(b: bool) -> str:
 def main() -> None:
     args = parse_args()
 
-    if args.version:
-        print(f"qpass: version {VERSION}")
-        return
-
     qs.init(project_root="./.")
     qs.eval(f"Main.Generate({args.length}, {bool_to_str(not args.no_symbols)})")
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Quantum Password Generator")
+    parser.add_argument("-v", "--version", action="version", version=VERSION)
 
-    parser.add_argument("generate")
-    parser.add_argument("-l", "--length", type=int, default=24)
-    parser.add_argument("-n", "--no-symbols", action="store_true")
-    parser.add_argument("-v", "--version", action="store_true")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    generate_parser = subparsers.add_parser("generate")
+    generate_parser.add_argument("-l", "--length", type=int, default=24, help="set generated password length")
+    generate_parser.add_argument("-n", "--no-symbols", action="store_true", help="exclude symbols from the password")
 
     return parser.parse_args()
