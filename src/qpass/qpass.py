@@ -1,23 +1,16 @@
-from qdk import qsharp as qs
-import json
+import qdk
 import argparse
 
 VERSION = "1.0.0"
 
 
-def char_list(s: str) -> list[str]:
-    return json.dumps(list(s))
-
-
-def bool_to_str(b: bool) -> str:
-    return "true" if b else "false"
-
-
 def main() -> None:
     args = parse_args()
+    qdk.init(project_root="./.")
 
-    qs.init(project_root="./.")
-    qs.eval(f"Main.Generate({args.length}, {bool_to_str(not args.no_symbols)})")
+    match args.command:
+        case "generate":
+            qdk.code.Main.Generate(args.length, args.no_symbols)
 
 
 def parse_args() -> argparse.Namespace:

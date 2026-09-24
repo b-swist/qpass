@@ -3,9 +3,9 @@ import Std.Convert.*;
 import Std.Core.*;
 import Utils.*;
 
-operation Generate(length : Int, symbols : Bool) : Unit {
+operation Generate(length : Int, no_symbols : Bool) : Unit {
     mutable password = ["", size = length];
-    let chars = Alphanumeric() + (symbols ? Symbols() | []);
+    let chars = Alphanumeric() + (no_symbols ? [] | Symbols());
     let max = Length(chars) - 1;
 
     for i in 0..length - 1 {
