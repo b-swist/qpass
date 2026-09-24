@@ -1,12 +1,18 @@
 import qdk
 import argparse
+from pathlib import Path
 
 VERSION = "1.0.0"
 
 
+def project_root() -> str:
+    path = Path(__file__).resolve().parent
+    return str(path)
+
+
 def main() -> None:
     args, help = parse_args()
-    qdk.init(project_root="./.")
+    qdk.init(project_root=project_root())
 
     match args.command:
         case "generate":
