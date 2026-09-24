@@ -17,3 +17,9 @@ operation Generate(length : Int, no_symbols : Bool) : Unit {
     Message(result);
 }
 
+function Check(password : String[]) : Unit {
+    let chars = Alphanumeric() + Symbols();
+    let entropy = IntAsDouble(Length(password)) * Lg(IntAsDouble(Length(chars)));
+    let result = DoubleAsStringWithPrecision(entropy, 1);
+    Message($"Estimated entopy: {result} bits")
+}
