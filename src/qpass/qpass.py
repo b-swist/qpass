@@ -2,7 +2,7 @@ import qdk
 import argparse
 from pathlib import Path
 
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 
 
 def project_root() -> str:
